@@ -19,7 +19,7 @@ namespace MailSender
 
         private void btnSendMail_Click(object sender, RoutedEventArgs e)
         {
-            if (EmailSendServiceClass.SendMail(Data.recepientAddress, Data.senderAddress, Data.smtpServerAddress, Data.smtpPort, Data.enableSsl, passwordBox.Password, txtBoxSubject.Text, Data.emailBody, Data.isBodyHtml))
+            if (EmailSendServiceClass.SendMail(Data.recepientAddress, Data.senderAddress, Data.smtpServerAddress, Data.smtpPort, Data.enableSsl, "1234", Data.emailSubject, Data.emailBody, Data.isBodyHtml))
             {
                 SendEndWindow sew = new SendEndWindow();
                 sew.ShowDialog();

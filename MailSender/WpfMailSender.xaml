@@ -4,15 +4,229 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MailSender"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <!--<Grid.Background>
-            <SolidColorBrush Color="{DynamicResource PrimaryColor}"/>
-        </Grid.Background>-->
-        <Button x:Name="btnSendEmail" Content="Отправить письмо" HorizontalAlignment="Left" Margin="58,220,0,0" VerticalAlignment="Top" Click="btnSendMail_Click">
+        Title="MailSender" Height="450" Width="850">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Фаил">
+                <MenuItem Header="Создать"/>
+                <MenuItem Header="Открыть"/>
+                <MenuItem Header="Сохранить"/>
+                <MenuItem Header="Закрыть"/>
+                <Separator/>
+                <MenuItem Header="Выход"/>
+            </MenuItem>
+            <MenuItem Header="Сервис" IsEnabled="False"/>
+            <MenuItem Header="Помощь" IsEnabled="False"/>
+        </Menu>
+        <!--<Button x:Name="btnSendEmail" Content="Отправить письмо" HorizontalAlignment="Left" Margin="58,159,0,0" VerticalAlignment="Top" Click="btnSendMail_Click" Grid.Row="1" Height="20" Width="107">
         </Button>
-        <PasswordBox x:Name="passwordBox" HorizontalAlignment="Left" Margin="58,156,0,0" VerticalAlignment="Top" Password="password" Width="100"/>
+        <PasswordBox x:Name="passwordBox" HorizontalAlignment="Left" Margin="58,95,0,0" VerticalAlignment="Top" Password="password" Width="100" Grid.Row="1" Height="18"/>
+        <TextBox x:Name="txtBoxSubject" HorizontalAlignment="Left" Height="23" Margin="58,48,0,0" TextWrapping="Wrap" Text="Тема письма" VerticalAlignment="Top" Width="120"/>-->
+        <StatusBar DockPanel.Dock="Bottom">
+            Готов к работе...
+        </StatusBar>
+        <TabControl>
+            <TabControl.Resources>
+                <Style TargetType="fa:ImageAwesome">
+                    <Setter Property="Height" Value="16"/>
+                    <Setter Property="Margin" Value="0,0,3,0"/>
+                </Style>
+            </TabControl.Resources>
+            <TabItem Header="Списки">
+                <TabItem.Resources>
+                    <Style TargetType="StackPanel">
+                        <Setter Property="Orientation" Value="Horizontal"/>
+                    </Style>
+                </TabItem.Resources>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <ToolBarTray Grid.Row="0">
+                        <ToolBar>
+                            <Label>Сервера</Label>
+                            <ComboBox MinWidth="100" MaxWidth="200" SelectedIndex="0">
+                                <ComboBoxItem>Server 1</ComboBoxItem>
+                                <ComboBoxItem>Server 2</ComboBoxItem>
+                                <ComboBoxItem>Server 3</ComboBoxItem>
+                            </ComboBox>
+                            <Button>
+                                <StackPanel>
+                                    <fa:ImageAwesome Icon="PlusCircle" Foreground="DarkGreen"/>
+                                    <TextBlock Text="Добавить"/>
+                                </StackPanel>
+                            </Button>
+                            <Button>
+                                <StackPanel>
+                                    <fa:ImageAwesome Icon="PencilSquare" Foreground="#FF000096"/>
+                                    <TextBlock Text="Изменить"/>
+                                </StackPanel>
+                            </Button>
+                            <Button>
+                                <StackPanel>
+                                    <fa:ImageAwesome Icon="TimesCircle" Foreground="#FFC80000"/>
+                                    <TextBlock Text="Удалить"/>
+                                </StackPanel>
+                            </Button>
+                        </ToolBar>
+                        <ToolBar Band="1" BandIndex="0">
+                            <Label>Отправители</Label>
+                            <ComboBox MinWidth="100" MaxWidth="200" SelectedIndex="0">
+                                <ComboBoxItem>Sender 1</ComboBoxItem>
+                                <ComboBoxItem>Sender 2</ComboBoxItem>
+                                <ComboBoxItem>Sender 3</ComboBoxItem>
+                            </ComboBox>
+                            <Button>
+                                <StackPanel>
+                                    <fa:ImageAwesome Icon="PlusCircle" Foreground="DarkGreen"/>
+                                    <TextBlock Text="Добавить"/>
+                                </StackPanel>
+                            </Button>
+                            <Button>
+                                <StackPanel>
+                                    <fa:ImageAwesome Icon="PencilSquare" Foreground="#FF000096"/>
+                                    <TextBlock Text="Изменить"/>
+                                </StackPanel>
+                            </Button>
+                            <Button>
+                                <StackPanel>
+                                    <fa:ImageAwesome Icon="TimesCircle" Foreground="#FFC80000"/>
+                                    <TextBlock Text="Удалить"/>
+                                </StackPanel>
+                            </Button>
+                        </ToolBar>
+                        <ToolBar>
+                            <Label>Перейти в планировщик</Label>
+                            <Button>
+                                <StackPanel>
+                                    <fa:ImageAwesome Icon="ClockOutline" Foreground="#FF000096"/>
+                                    <TextBlock Text="Перейти"/>
+                                </StackPanel>
+                            </Button>
+                        </ToolBar>
+                        <ToolBar Band="1" BandIndex="1">
+                            <Label>Список адресатов</Label>
+                            <Button>
+                                <StackPanel>
+                                    <fa:ImageAwesome Icon="PlusCircle" Foreground="DarkGreen"/>
+                                    <TextBlock Text="Добавить"/>
+                                </StackPanel>
+                            </Button>
+                            <Button>
+                                <StackPanel>
+                                    <fa:ImageAwesome Icon="PencilSquare" Foreground="#FF000096"/>
+                                    <TextBlock Text="Изменить"/>
+                                </StackPanel>
+                            </Button>
+                            <Button>
+                                <StackPanel>
+                                    <fa:ImageAwesome Icon="TimesCircle" Foreground="#FFC80000"/>
+                                    <TextBlock Text="Удалить"/>
+                                </StackPanel>
+                            </Button>
+                        </ToolBar>
+                    </ToolBarTray>
+                    <GroupBox Grid.Row="1" Header="Заголовок">
+                        <DataGrid AutoGenerateColumns="False" IsReadOnly="True">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ID"/>
+                                <DataGridTextColumn Header="Имя" Width="200"/>
+                                <DataGridTextColumn Header="Email" Width="200"/>
+                                <DataGridTextColumn Header="Коментарий" Width="*"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Планировщик">
+                <DockPanel LastChildFill="True">
+                    <StackPanel>
+                        <TextBlock>Дата:</TextBlock>
+                        <Calendar></Calendar>
+                        <DockPanel Margin="0,0,0,3">
+                            <TextBlock Margin="0,0,3,0">Время:</TextBlock>
+                            <TextBox Text="00:00:00" TextAlignment="Center"/>
+                        </DockPanel>
+                        <StackPanel>
+                            <Button Margin="0,3,0,3" Padding="0,4,0,4">
+                                <StackPanel Orientation="Horizontal">
+                                    <fa:ImageAwesome Icon="PlayCircle" Foreground="DarkGreen"/>
+                                    <TextBlock Text="Запланировать"/>
+                                </StackPanel>
+                            </Button>
+                            <Button Margin="0,3,0,3" Padding="0,4,0,4">
+                                <StackPanel Orientation="Horizontal">
+                                    <fa:ImageAwesome Icon="Send" Foreground="DarkGreen"/>
+                                    <TextBlock Text="Отправить сейчас"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                    </StackPanel>
+                    <GroupBox Header="Запланированные задания">
+                        <ListBox>
+                            <ListBoxItem>Задание 1</ListBoxItem>
+                            <ListBoxItem>Задание 2</ListBoxItem>
+                            <ListBoxItem>Задание 3</ListBoxItem>
+                        </ListBox>
+                    </GroupBox>
+                </DockPanel>
+            </TabItem>
+            <TabItem Header="Письма">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="5*"/>
+                    </Grid.ColumnDefinitions>
+                    <GroupBox Header="Письма" Grid.Column="0">
+                        <DockPanel>
+                            <UniformGrid DockPanel.Dock="Bottom">
+                                <Button Margin="0,3,1.5,3" Padding=" 0,4,0,4">
+                                    <StackPanel Orientation="Horizontal">
+                                        <fa:ImageAwesome Icon="PlusCircle" Foreground="DarkGreen"/>
+                                        <TextBlock Text="Добавить"/>
+                                    </StackPanel>
+                                </Button>
+                                <Button Margin="3,1.5,0,3" Padding=" 0,4,0,4">
+                                    <StackPanel Orientation="Horizontal">
+                                        <fa:ImageAwesome Icon="TimesCircle" Foreground="#FFC80000"/>
+                                        <TextBlock Text="Удалить"/>
+                                    </StackPanel>
+                                </Button>
+                            </UniformGrid>
+                            <ListBox>
+                                <ListBoxItem>Письмо 1</ListBoxItem>
+                                <ListBoxItem>Письмо 1</ListBoxItem>
+                                <ListBoxItem>Письмо 1</ListBoxItem>
+                            </ListBox>
+                        </DockPanel>
+                    </GroupBox>
+                    <DockPanel Grid.Column="1">
+                        <GroupBox Header="Тема письма" DockPanel.Dock="Top">
+                            <TextBox/>
+                        </GroupBox>
+                        <GroupBox Header="Тело письма" DockPanel.Dock="Top">
+                            <TextBox AcceptsReturn="True"/>
+                        </GroupBox>
+                    </DockPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Статистика" IsEnabled="False"></TabItem>
+        </TabControl>
+    </DockPanel>
+    <!--<Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="87*"/>
+            <RowDefinition Height="332*"/>
+        </Grid.RowDefinitions>
+        --><!--<Grid.Background>
+            <SolidColorBrush Color="{DynamicResource PrimaryColor}"/>
+        </Grid.Background>--><!--
+        <Button x:Name="btnSendEmail" Content="Отправить письмо" HorizontalAlignment="Left" Margin="58,159,0,0" VerticalAlignment="Top" Click="btnSendMail_Click" Grid.Row="1" Height="20" Width="107">
+        </Button>
+        <PasswordBox x:Name="passwordBox" HorizontalAlignment="Left" Margin="58,95,0,0" VerticalAlignment="Top" Password="password" Width="100" Grid.Row="1" Height="18"/>
         <TextBox x:Name="txtBoxSubject" HorizontalAlignment="Left" Height="23" Margin="58,48,0,0" TextWrapping="Wrap" Text="Тема письма" VerticalAlignment="Top" Width="120"/>
-    </Grid>
+    </Grid>-->
 </Window>
