@@ -1,7 +1,8 @@
 ﻿namespace MailSender.lib.Data
 {
-    class Server
+    public class Server
     {
+        public string Name { get; set; }
         public string Address { get; set; }
         public int Port { get; set; } = 25;
         public bool SSL { get; set; } = true;
