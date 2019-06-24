@@ -7,6 +7,7 @@
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         xmlns:testData="clr-namespace:MailSender.lib.Data;assembly=MailSender.lib"
         xmlns:db="clr-namespace:MailSender.lib.Data.Linq2SQL;assembly=MailSender.lib"
+        xmlns:ucmp="clr-namespace:MailSender.Components"
         mc:Ignorable="d"
         Title="{Binding Title}" Height="450" Width="850"
         DataContext="{Binding WpfMailSenderViewModel, Source={StaticResource Locator}}">
@@ -18,15 +19,19 @@
                 <MenuItem Header="Сохранить"/>
                 <MenuItem Header="Закрыть"/>
                 <Separator/>
-                <MenuItem Header="Выход"/>
+                <MenuItem Header="Выход" Click="OnCloseClick"/>
             </MenuItem>
             <MenuItem Header="Сервис" IsEnabled="False"/>
             <MenuItem Header="Помощь" IsEnabled="False"/>
         </Menu>
         <StatusBar DockPanel.Dock="Bottom">
+            <StatusBarItem DockPanel.Dock="Right">
+                <ucmp:TabController IsLeftButtonVisible="False" LeftButtonClick="TabController_OnLeftButtonClick" RightButtonClick="TabController_OnRightButtonClick"/>
+            </StatusBarItem>
             <TextBlock Text="{Binding Status}"/>
+            
         </StatusBar>
-        <TabControl>
+        <TabControl Name="MainTabControl">
             <TabControl.Resources>
                 <Style TargetType="fa:ImageAwesome">
                     <Setter Property="Height" Value="16"/>
@@ -132,11 +137,11 @@
                         </ToolBar>
                     </ToolBarTray>
                     <GroupBox Grid.Row="1" Header="Список адресатов">
-                        <GroupBox.Resources>
-                            <db:MailSenderDBContext x:Key="DataBaseContext"/>
-                        </GroupBox.Resources>
-                        <DataGrid AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding Recipient, Source={StaticResource DataBaseContext}}" GridLinesVisibility="Vertical"
-                                  AlternatingRowBackground="LightBlue" VerticalGridLinesBrush="Gray">
+                        <DataGrid AutoGenerateColumns="False" IsReadOnly="True" 
+                                  ItemsSource="{Binding Recipients}" 
+                                  GridLinesVisibility="Vertical"
+                                  AlternatingRowBackground="LightBlue" 
+                                  VerticalGridLinesBrush="Gray">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="ID" Binding="{Binding Id}"/>
                                 <DataGridTextColumn Header="Имя" Width="200" Binding="{Binding Name}"/>
@@ -219,17 +224,4 @@
             <TabItem Header="Статистика" IsEnabled="False"></TabItem>
         </TabControl>
     </DockPanel>
-    <!--<Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="87*"/>
-            <RowDefinition Height="332*"/>
-        </Grid.RowDefinitions>
-        --><!--<Grid.Background>
-            <SolidColorBrush Color="{DynamicResource PrimaryColor}"/>
-        </Grid.Background>--><!--
-        <Button x:Name="btnSendEmail" Content="Отправить письмо" HorizontalAlignment="Left" Margin="58,159,0,0" VerticalAlignment="Top" Click="btnSendMail_Click" Grid.Row="1" Height="20" Width="107">
-        </Button>
-        <PasswordBox x:Name="passwordBox" HorizontalAlignment="Left" Margin="58,95,0,0" VerticalAlignment="Top" Password="password" Width="100" Grid.Row="1" Height="18"/>
-        <TextBox x:Name="txtBoxSubject" HorizontalAlignment="Left" Height="23" Margin="58,48,0,0" TextWrapping="Wrap" Text="Тема письма" VerticalAlignment="Top" Width="120"/>
-    </Grid>-->
 </Window>

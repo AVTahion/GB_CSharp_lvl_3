@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Net;
 using System.Net.Mail;
+using MailSender.Components;
 
 namespace MailSender
 {
@@ -17,17 +18,27 @@ namespace MailSender
             InitializeComponent();
         }
 
-        private void btnSendMail_Click(object sender, RoutedEventArgs e)
+        private void OnCloseClick(object Sender, RoutedEventArgs e) => Close();
+
+        private void TabController_OnLeftButtonClick(object Sender, EventArgs e)
         {
-            if (EmailSendServiceClass.SendMail(Data.recepientAddress, Data.senderAddress, Data.smtpServerAddress, Data.smtpPort, Data.enableSsl, "1234", Data.emailSubject, Data.emailBody, Data.isBodyHtml))
-            {
-                SendEndWindow sew = new SendEndWindow();
-                sew.ShowDialog();
-            }
-            else
-            {
-                MessageBox.Show(Data.errorMessage);
-            }
+            if (!(Sender is TabController tab_controller)) return;
+
+            if(tab_controller.IsLeftButtonVisible) MainTabControl.SelectedIndex--;
+
+            tab_controller.IsLeftButtonVisible = MainTabControl.SelectedIndex > 0;
+            tab_controller.IsRightButtonVisible = MainTabControl.SelectedIndex < MainTabControl.Items.Count;
         }
+
+        private void TabController_OnRightButtonClick(object Sender, EventArgs e)
+        {
+            if (!(Sender is TabController tab_controller)) return;
+
+            if (tab_controller.IsRightButtonVisible) MainTabControl.SelectedIndex++;
+
+            tab_controller.IsLeftButtonVisible = MainTabControl.SelectedIndex > 0;
+            tab_controller.IsRightButtonVisible = MainTabControl.SelectedIndex < MainTabControl.Items.Count;
+        }
+
     }
 }
