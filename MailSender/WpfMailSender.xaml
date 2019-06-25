@@ -8,6 +8,7 @@
         xmlns:testData="clr-namespace:MailSender.lib.Data;assembly=MailSender.lib"
         xmlns:db="clr-namespace:MailSender.lib.Data.Linq2SQL;assembly=MailSender.lib"
         xmlns:ucmp="clr-namespace:MailSender.Components"
+        xmlns:view="clr-namespace:MailSender.View"
         mc:Ignorable="d"
         Title="{Binding Title}" Height="450" Width="850"
         DataContext="{Binding WpfMailSenderViewModel, Source={StaticResource Locator}}">
@@ -29,7 +30,6 @@
                 <ucmp:TabController IsLeftButtonVisible="False" LeftButtonClick="TabController_OnLeftButtonClick" RightButtonClick="TabController_OnRightButtonClick"/>
             </StatusBarItem>
             <TextBlock Text="{Binding Status}"/>
-            
         </StatusBar>
         <TabControl Name="MainTabControl">
             <TabControl.Resources>
@@ -136,20 +136,9 @@
                             </Button>
                         </ToolBar>
                     </ToolBarTray>
-                    <GroupBox Grid.Row="1" Header="Список адресатов">
-                        <DataGrid AutoGenerateColumns="False" IsReadOnly="True" 
-                                  ItemsSource="{Binding Recipients}" 
-                                  GridLinesVisibility="Vertical"
-                                  AlternatingRowBackground="LightBlue" 
-                                  VerticalGridLinesBrush="Gray">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="ID" Binding="{Binding Id}"/>
-                                <DataGridTextColumn Header="Имя" Width="200" Binding="{Binding Name}"/>
-                                <DataGridTextColumn Header="Email" Width="200" Binding="{Binding Address}"/>
-                                <DataGridTextColumn Header="Коментарий" Width="*" Binding="{Binding Description}"/>
-                            </DataGrid.Columns>
-                        </DataGrid>
-                    </GroupBox>
+                    <view:RecipientsInfoViewer Grid.Row="1">
+
+                    </view:RecipientsInfoViewer>
                 </Grid>
             </TabItem>
             <TabItem Header="Планировщик">
