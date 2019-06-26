@@ -4,10 +4,16 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:local="clr-namespace:MailSender.View"
              DataContext="{Binding WpfMailSenderViewModel, Source={StaticResource Locator}}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding UpdateDataCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <GroupBox >
         <GroupBox.Header>
             <TextBlock Text="Получатели писем" FontSize="14" FontWeight="Bold" Margin="3,5,3,5"/>
@@ -17,7 +23,7 @@
                 <TextBlock Margin="0,0,3,0">Фильтр имени:</TextBlock>
                 <TextBox/>
             </DockPanel>
-            <Button DockPanel.Dock="Bottom" HorizontalAlignment="Center" Margin="0,5,0,0" Padding="10,5,10,5">
+            <Button DockPanel.Dock="Bottom" HorizontalAlignment="Center" Margin="0,5,0,0" Padding="10,5,10,5" Command="{Binding UpdateDataCommand}">
                 <StackPanel Orientation="Horizontal">
                     <fa:ImageAwesome Icon="Refresh" Height="16" Margin="0,0,8,0" Foreground="#FF000096"/>
                     <TextBlock Text="Обновить"/>

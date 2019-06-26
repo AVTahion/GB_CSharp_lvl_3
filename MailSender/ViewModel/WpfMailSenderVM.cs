@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using MailSender.lib.Services;
 using System.Collections.ObjectModel;
 using MailSender.lib.Data.Linq2SQL;
+using System.Windows.Input;
+using GalaSoft.MvvmLight.Command;
 
 namespace MailSender.ViewModel
 {
@@ -37,11 +39,21 @@ namespace MailSender.ViewModel
             private set => Set(ref _Recipients, value);
         }
 
+        public ICommand UpdateDataCommand { get; }
+
         public WpfMailSenderVM(IRecipientsDataService RecipientsDataServise)
         {
             _RecipientsDataService = RecipientsDataServise;
+            UpdateDataCommand = new RelayCommand(OnUpdateDataCommandExecuted, CanUpdateDataCommandExecuted);
+            //UpdateData();
+        }
+
+        private void OnUpdateDataCommandExecuted()
+        {
             UpdateData();
         }
+
+        private bool CanUpdateDataCommandExecuted() => true;
 
         public void UpdateData()
         {
