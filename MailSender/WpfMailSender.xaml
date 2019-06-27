@@ -10,7 +10,7 @@
         xmlns:ucmp="clr-namespace:MailSender.Components"
         xmlns:view="clr-namespace:MailSender.View"
         mc:Ignorable="d"
-        Title="{Binding Title}" Height="450" Width="850"
+        Title="{Binding Title}" Height="450" Width="900" MinWidth="900"
         DataContext="{Binding WpfMailSenderViewModel, Source={StaticResource Locator}}">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
@@ -136,9 +136,15 @@
                             </Button>
                         </ToolBar>
                     </ToolBarTray>
-                    <view:RecipientsInfoViewer Grid.Row="1">
-
-                    </view:RecipientsInfoViewer>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" MinWidth="550"/>
+                            <ColumnDefinition Width="*" MinWidth="300"/>
+                        </Grid.ColumnDefinitions>
+                        <view:RecipientsInfoViewer Grid.Column="0"/>
+                        <GridSplitter Grid.Column="1" HorizontalAlignment="Left" Width="4" Background="Transparent"/>
+                        <view:RecepientInfoEditor Grid.Column="1"/>
+                    </Grid>
                 </Grid>
             </TabItem>
             <TabItem Header="Планировщик">

@@ -39,6 +39,14 @@ namespace MailSender.ViewModel
             private set => Set(ref _Recipients, value);
         }
 
+        private Recipient _CurrentRecipient;
+
+        public Recipient CurrentRecipient
+        {
+            get => _CurrentRecipient;
+            set => Set(ref _CurrentRecipient, value);
+        }
+
         public ICommand UpdateDataCommand { get; }
 
         public WpfMailSenderVM(IRecipientsDataService RecipientsDataServise)
