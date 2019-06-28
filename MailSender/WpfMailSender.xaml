@@ -20,18 +20,18 @@
                 <MenuItem Header="Сохранить"/>
                 <MenuItem Header="Закрыть"/>
                 <Separator/>
-                <MenuItem Header="Выход" Click="OnCloseClick"/>
+                <MenuItem Header="Выход" Command="{Binding AppExitCommand}"/>
             </MenuItem>
             <MenuItem Header="Сервис" IsEnabled="False"/>
             <MenuItem Header="Помощь" IsEnabled="False"/>
         </Menu>
         <StatusBar DockPanel.Dock="Bottom">
             <StatusBarItem DockPanel.Dock="Right">
-                <ucmp:TabController IsLeftButtonVisible="False" LeftButtonClick="TabController_OnLeftButtonClick" RightButtonClick="TabController_OnRightButtonClick"/>
+                <ucmp:TabController/>
             </StatusBarItem>
             <TextBlock Text="{Binding Status}"/>
         </StatusBar>
-        <TabControl Name="MainTabControl">
+        <TabControl Name="MainTabControl" SelectedIndex="{Binding MainTabControlSelectedIndex}">
             <TabControl.Resources>
                 <Style TargetType="fa:ImageAwesome">
                     <Setter Property="Height" Value="16"/>

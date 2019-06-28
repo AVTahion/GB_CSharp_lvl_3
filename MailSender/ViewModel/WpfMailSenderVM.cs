@@ -31,6 +31,21 @@ namespace MailSender.ViewModel
             set => Set(ref _Status, value);
         }
 
+        private int _MainTabControlSelectedIndex;
+
+        public int MainTabControlSelectedIndex
+        {
+            get => _MainTabControlSelectedIndex;
+            set => Set(ref _MainTabControlSelectedIndex, value);
+        }
+
+        private int _MainTabControlItemCount = 4;
+
+        public int MainTabControlItemCount
+        {
+            get => _MainTabControlItemCount;
+        }
+
         private ObservableCollection<Recipient> _Recipients;
 
         public ObservableCollection<Recipient> Recipients
@@ -49,11 +64,25 @@ namespace MailSender.ViewModel
 
         public ICommand UpdateDataCommand { get; }
 
+        public ICommand CreateRecipientCommand { get; }
+
+        public ICommand SaveRecipientCommand { get; }
+
+        public ICommand AppExitCommand { get; }
+
+        public ICommand TabControlLeft { get; }
+
+        public ICommand TabControlRight { get; }
+
         public WpfMailSenderVM(IRecipientsDataService RecipientsDataServise)
         {
             _RecipientsDataService = RecipientsDataServise;
             UpdateDataCommand = new RelayCommand(OnUpdateDataCommandExecuted, CanUpdateDataCommandExecuted);
-            //UpdateData();
+            CreateRecipientCommand = new RelayCommand(OnCreateRecipientExecuted, CanCreateRecipientExecuted);
+            SaveRecipientCommand = new RelayCommand<Recipient>(OnSaveRecipientExecuted, CanSaveRecipientExecuted);
+            AppExitCommand = new RelayCommand(OnAppExitCommand, () => true, true);
+            TabControlLeft = new RelayCommand(OnTabControlLeft, CanTabControlLeft);
+            TabControlRight = new RelayCommand(OnTabControlRight, CanTabControlRight);
         }
 
         private void OnUpdateDataCommandExecuted()
@@ -62,6 +91,46 @@ namespace MailSender.ViewModel
         }
 
         private bool CanUpdateDataCommandExecuted() => true;
+
+        private void OnCreateRecipientExecuted()
+        {
+            var new_recipient = new Recipient()
+            {
+                Name = "New_Recipient",
+                Address = "recipient@server.net"
+            };
+            _RecipientsDataService.Create(new_recipient);
+            _Recipients.Add(new_recipient);
+            CurrentRecipient = new_recipient;
+        }
+
+        private bool CanCreateRecipientExecuted() => true;
+
+        private void OnSaveRecipientExecuted(Recipient recipient)
+        {
+            _RecipientsDataService.Update(recipient);
+        }
+
+        private bool CanSaveRecipientExecuted(Recipient recipient) => recipient != null;
+
+        private void OnAppExitCommand()
+        {
+            System.Windows.Application.Current.Shutdown();
+        }
+
+        private void OnTabControlLeft()
+        {
+            MainTabControlSelectedIndex--;
+        }
+
+        private bool CanTabControlLeft() => MainTabControlSelectedIndex > 0;
+
+        private void OnTabControlRight()
+        {
+            MainTabControlSelectedIndex++;
+        }
+
+        private bool CanTabControlRight() => MainTabControlSelectedIndex < MainTabControlItemCount;
 
         public void UpdateData()
         {

@@ -18,27 +18,27 @@ namespace MailSender
             InitializeComponent();
         }
 
-        private void OnCloseClick(object Sender, RoutedEventArgs e) => Close();
+        //private void OnCloseClick(object Sender, RoutedEventArgs e) => Close();
 
-        private void TabController_OnLeftButtonClick(object Sender, EventArgs e)
-        {
-            if (!(Sender is TabController tab_controller)) return;
+        //private void TabController_OnLeftButtonClick(object Sender, EventArgs e)
+        //{
+        //    if (!(Sender is TabController tab_controller)) return;
 
-            if(tab_controller.IsLeftButtonVisible) MainTabControl.SelectedIndex--;
+        //    if(tab_controller.IsLeftButtonVisible) MainTabControl.SelectedIndex--;
 
-            tab_controller.IsLeftButtonVisible = MainTabControl.SelectedIndex > 0;
-            tab_controller.IsRightButtonVisible = MainTabControl.SelectedIndex < MainTabControl.Items.Count;
-        }
+        //    tab_controller.IsLeftButtonVisible = MainTabControl.SelectedIndex > 0;
+        //    tab_controller.IsRightButtonVisible = MainTabControl.SelectedIndex < MainTabControl.Items.Count;
+        //}
 
-        private void TabController_OnRightButtonClick(object Sender, EventArgs e)
-        {
-            if (!(Sender is TabController tab_controller)) return;
+        //private void TabController_OnRightButtonClick(object Sender, EventArgs e)
+        //{
+        //    if (!(Sender is TabController tab_controller)) return;
 
-            if (tab_controller.IsRightButtonVisible) MainTabControl.SelectedIndex++;
+        //    if (tab_controller.IsRightButtonVisible) MainTabControl.SelectedIndex++;
 
-            tab_controller.IsLeftButtonVisible = MainTabControl.SelectedIndex > 0;
-            tab_controller.IsRightButtonVisible = MainTabControl.SelectedIndex < MainTabControl.Items.Count;
-        }
+        //    tab_controller.IsLeftButtonVisible = MainTabControl.SelectedIndex > 0;
+        //    tab_controller.IsRightButtonVisible = MainTabControl.SelectedIndex < MainTabControl.Items.Count;
+        //}
 
     }
 }
