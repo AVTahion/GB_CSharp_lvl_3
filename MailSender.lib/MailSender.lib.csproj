@@ -48,6 +48,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MailSenderDBContext.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Data\Linq2SQL\Recipient.cs" />
     <Compile Include="Data\MailMessage.cs" />
     <Compile Include="Data\Recipient.cs" />
     <Compile Include="Data\Sender.cs" />
@@ -62,6 +63,8 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Services\IMailMessagesService.cs" />
+    <Compile Include="Services\InMemory\RecipientsDataServiceInMemory.cs" />
     <Compile Include="Services\IRecipientsDataService.cs" />
     <Compile Include="Services\Linq2SQL\RecipientsDataServiceLinq2SQL.cs" />
   </ItemGroup>

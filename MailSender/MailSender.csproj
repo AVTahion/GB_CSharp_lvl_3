@@ -111,6 +111,7 @@
     <Compile Include="SendEndWindow.xaml.cs">
       <DependentUpon>SendEndWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ValidationRules\ReGexValidationRule.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="ViewModel\WpfMailSenderVM.cs" />
@@ -158,5 +159,6 @@
       <Name>MailSender.lib</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -24,5 +24,18 @@ namespace MailSender.View
         {
             InitializeComponent();
         }
+
+        private void OnDataValidationError(object Sender, ValidationErrorEventArgs E)
+        {
+            var error_control = (Control)E.OriginalSource;
+            if (E.Action == ValidationErrorEventAction.Added)
+            {
+                error_control.ToolTip = E.Error.ErrorContent.ToString();
+            }
+            else
+            {
+                error_control.ToolTip = DependencyProperty.UnsetValue;
+            }
+        }
     }
 }

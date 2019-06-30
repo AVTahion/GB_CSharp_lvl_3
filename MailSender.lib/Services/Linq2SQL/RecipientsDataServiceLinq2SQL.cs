@@ -21,6 +21,8 @@ namespace MailSender.lib.Services.Linq2SQL
             return _db.Recipient.ToArray();
         }
 
+        public Recipient GetById(int id) => _db.Recipient.FirstOrDefault(r => r.Id == id);
+
         public void Create(Recipient item)
         {
             if (item.Id != 0) return;
