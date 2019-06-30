@@ -67,6 +67,7 @@
     <Compile Include="Services\InMemory\RecipientsDataServiceInMemory.cs" />
     <Compile Include="Services\IRecipientsDataService.cs" />
     <Compile Include="Services\Linq2SQL\RecipientsDataServiceLinq2SQL.cs" />
+    <Compile Include="Service\StringEncryptor.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
