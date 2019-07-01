@@ -11,9 +11,7 @@ namespace MailSender.Lib.Tests.Service
     {
         public StringEncryptor()
         {
-            //
             // TODO: добавьте здесь логику конструктора
-            //
         }
 
         private TestContext testContextInstance;
@@ -59,9 +57,7 @@ namespace MailSender.Lib.Tests.Service
         [TestMethod]
         public void TestMethod1()
         {
-            //
             // TODO: добавьте здесь логику теста
-            //
         }
     }
 }
