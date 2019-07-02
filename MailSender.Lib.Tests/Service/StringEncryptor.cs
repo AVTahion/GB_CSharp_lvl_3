@@ -2,6 +2,7 @@
 using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MailSender.lib.Service;
 
 namespace MailSender.Lib.Tests.Service
 {
@@ -11,9 +12,7 @@ namespace MailSender.Lib.Tests.Service
     {
         public StringEncryptor()
         {
-            //
             // TODO: добавьте здесь логику конструктора
-            //
         }
 
         private TestContext testContextInstance;
@@ -57,11 +56,36 @@ namespace MailSender.Lib.Tests.Service
         #endregion
 
         [TestMethod]
-        public void TestMethod1()
+        public void EncriptMethod_On_ASD_Return_BTE_WithKey_1()
         {
-            //
-            // TODO: добавьте здесь логику теста
-            //
+            // AAA
+            // Arrange
+            const string str = "ASD";
+            const string expected_result = "BTE";
+            const int key = 1;
+
+            // Act
+            var actual_result = MailSender.lib.Service.StringEncryptor.Encrypt(str, key);
+
+            // Assert
+            Assert.AreEqual(expected_result, actual_result);
         }
+
+        [TestMethod]
+        public void DecriptMethod_On_BTE_Return_ASD_WithKey_1()
+        {
+            // AAA
+            // Arrange
+            const string str = "BTE";
+            const string expected_result = "ASD";
+            const int key = 1;
+
+            // Act
+            var actual_result = MailSender.lib.Service.StringEncryptor.Decrypt(str, key);
+
+            // Assert
+            Assert.AreEqual(expected_result, actual_result);
+        }
+
     }
 }
