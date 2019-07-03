@@ -13,7 +13,7 @@ namespace MailSender.lib.Services.InMemory
         {
             new Recipient {Id = 1, Name = "Ivanov", Address = "ivanov@server.net", Description = ""},
             new Recipient {Id = 2, Name = "Petrov", Address = "petrov@server.net", Description = ""},
-            new Recipient {Id = 2, Name = "Sidorov", Address = "sidorov@server.net", Description = ""},
+            new Recipient {Id = 3, Name = "Sidorov", Address = "sidorov@server.net", Description = ""},
         };
 
         public void Create(Recipient item)

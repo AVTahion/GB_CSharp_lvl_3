@@ -39,5 +39,16 @@ namespace MailSender.lib.Data.Linq2SQL
                 throw new InvalidOperationException("Строка имени должна быть не менее 2 символов");
             }
         }
+
+        public override bool Equals(object obj)
+        {
+            Recipient recipient = obj as Recipient;
+            if (recipient == null) return false;
+            return 
+                Id == recipient.Id &&
+                Name == recipient.Name &&
+                Address == recipient.Address &&
+                Description == recipient.Description;
+        }
     }
 }
