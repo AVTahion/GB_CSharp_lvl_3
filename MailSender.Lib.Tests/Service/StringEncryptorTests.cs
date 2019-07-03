@@ -8,9 +8,9 @@ namespace MailSender.Lib.Tests.Service
 {
     /// <summary> Класс модулных тестов для StringEncryptor </summary>
     [TestClass]
-    public class StringEncryptor
+    public class StringEncryptorTests
     {
-        public StringEncryptor()
+        public StringEncryptorTests()
         {
             // TODO: добавьте здесь логику конструктора
         }
