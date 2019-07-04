@@ -3,7 +3,7 @@ using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MailSender.lib.Services.InMemory;
-using MailSender.lib.Data.Linq2SQL;
+using MailSender.lib.Data;
 
 namespace MailSender.Lib.Tests.Services
 {

@@ -15,7 +15,7 @@ namespace MailSender.ViewModel
     public class WpfMailSenderVM : ViewModelBase
     {
         private readonly IRecipientsDataService _RecipientsDataService;
-        private readonly ISendersDataService _SendersDataService;
+        private readonly ISenderDataService _SendersDataService;
         private readonly IServersDataService _ServersDataService;
         private readonly IMailMessagesDataService _MailMessagesDataService;
 
@@ -80,7 +80,7 @@ namespace MailSender.ViewModel
 
         public WpfMailSenderVM(
             IRecipientsDataService RecipientsDataServise,
-            ISendersDataService SendersDataService,
+            ISenderDataService SendersDataService,
             IServersDataService ServersDataService,
             IMailMessagesDataService MailMessagesDataService
             )
