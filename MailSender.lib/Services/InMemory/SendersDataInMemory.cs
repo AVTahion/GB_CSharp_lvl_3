@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MailSender.lib.Services.InMemory
 {
-    public class SendersDataInMemory : DataInMemory<Sender>, ISendersDataService
+    public class SendersDataInMemory : DataInMemory<Sender>, ISenderDataService
     {
         public override void Update(Sender item)
         {

@@ -27,7 +27,7 @@ namespace MailSender
                     {
                         sc.Send(mm);
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                         return false;
                     }
