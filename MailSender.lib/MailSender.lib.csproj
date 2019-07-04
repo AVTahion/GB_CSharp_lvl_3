@@ -43,6 +43,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Database.cs" />
+    <Compile Include="Data\BaseEntityes\Entity.cs" />
+    <Compile Include="Data\BaseEntityes\Human.cs" />
+    <Compile Include="Data\BaseEntityes\NamedEntity.cs" />
     <Compile Include="Data\Linq2SQL\MailSenderDBContext.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -63,9 +66,16 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Services\IDataService.cs" />
     <Compile Include="Services\IMailMessagesService.cs" />
+    <Compile Include="Services\InMemory\DataInMemory.cs" />
+    <Compile Include="Services\InMemory\MailMessagesDataInMemory.cs" />
     <Compile Include="Services\InMemory\RecipientsDataServiceInMemory.cs" />
+    <Compile Include="Services\InMemory\SendersDataInMemory.cs" />
+    <Compile Include="Services\InMemory\ServersDataInMemory.cs" />
     <Compile Include="Services\IRecipientsDataService.cs" />
+    <Compile Include="Services\ISendersDataService.cs" />
+    <Compile Include="Services\IServersDataService.cs" />
     <Compile Include="Services\Linq2SQL\RecipientsDataServiceLinq2SQL.cs" />
     <Compile Include="Service\StringEncryptor.cs" />
   </ItemGroup>

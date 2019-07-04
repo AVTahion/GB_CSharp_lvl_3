@@ -3,42 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MailSender.lib.Data.Linq2SQL;
+using MailSender.lib.Data;
 
 namespace MailSender.lib.Services.InMemory
 {
-    public class RecipientsDataServiceInMemory : IRecipientsDataService
+    public class RecipientsDataServiceInMemory : DataInMemory<Recipient>, IRecipientsDataService
     {
-        private readonly List<Recipient> _Recipients = new List<Recipient>
+        public RecipientsDataServiceInMemory()
         {
-            new Recipient {Id = 1, Name = "Ivanov", Address = "ivanov@server.net", Description = ""},
-            new Recipient {Id = 2, Name = "Petrov", Address = "petrov@server.net", Description = ""},
-            new Recipient {Id = 3, Name = "Sidorov", Address = "sidorov@server.net", Description = ""},
-        };
-
-        public void Create(Recipient item)
-        {
-            if (_Recipients.Contains(item)) return;
-            item.Id = _Recipients.Count == 0 ? 1 : _Recipients.Max(r => r.Id) + 1;
-            _Recipients.Add(item);
+            var test_data = new List<Recipient>
+            {
+                new Recipient {Id = 1, Name = "Ivanov", Address = "ivanov@server.net", Description = ""},
+                new Recipient {Id = 2, Name = "Petrov", Address = "petrov@server.net", Description = ""},
+                new Recipient {Id = 3, Name = "Sidorov", Address = "sidorov@server.net", Description = ""},
+            };
+            _Items.AddRange(test_data);
         }
 
-        public void Delete(Recipient item)
+        public override void Update(Recipient item)
         {
-            if (_Recipients.Contains(item)) return;
-            var db_item = GetById(item.Id);
-            if (db_item is null) return;
+            if(item is null) throw new ArgumentNullException(nameof(item));
 
-            _Recipients.Remove(db_item);
-        }
-
-        public IEnumerable<Recipient> GetAll() => _Recipients;
-
-        public Recipient GetById(int id) => _Recipients.FirstOrDefault(r => r.Id == id);
-
-        public void Update(Recipient item)
-        {
-            if(_Recipients.Contains(item)) return;
             var db_item = GetById(item.Id);
             if (db_item is null) return;
 

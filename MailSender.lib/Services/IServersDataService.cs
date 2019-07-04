@@ -3,5 +3,6 @@
 /// <summary>Сервис работы с данными получателей почты</summary>
 namespace MailSender.lib.Services
 {
-    public interface IRecipientsDataService : IDataService<Recipient> { }
+    public interface IServersDataService : IDataService<Server> { }
+
 }

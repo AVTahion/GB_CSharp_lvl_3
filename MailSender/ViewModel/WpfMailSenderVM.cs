@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MailSender.lib.Services;
 using System.Collections.ObjectModel;
-using MailSender.lib.Data.Linq2SQL;
+using MailSender.lib.Data;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
 
@@ -15,6 +15,10 @@ namespace MailSender.ViewModel
     public class WpfMailSenderVM : ViewModelBase
     {
         private readonly IRecipientsDataService _RecipientsDataService;
+        private readonly ISendersDataService _SendersDataService;
+        private readonly IServersDataService _ServersDataService;
+        private readonly IMailMessagesDataService _MailMessagesDataService;
+
         private string _Title = "Помошник спамера";
 
         public string Title
@@ -74,9 +78,17 @@ namespace MailSender.ViewModel
 
         public ICommand TabControlRight { get; }
 
-        public WpfMailSenderVM(IRecipientsDataService RecipientsDataServise)
+        public WpfMailSenderVM(
+            IRecipientsDataService RecipientsDataServise,
+            ISendersDataService SendersDataService,
+            IServersDataService ServersDataService,
+            IMailMessagesDataService MailMessagesDataService
+            )
         {
             _RecipientsDataService = RecipientsDataServise;
+            _SendersDataService = SendersDataService;
+            _ServersDataService = ServersDataService;
+            _MailMessagesDataService = MailMessagesDataService;
             UpdateDataCommand = new RelayCommand(OnUpdateDataCommandExecuted, CanUpdateDataCommandExecuted);
             CreateRecipientCommand = new RelayCommand(OnCreateRecipientExecuted, CanCreateRecipientExecuted);
             SaveRecipientCommand = new RelayCommand<Recipient>(OnSaveRecipientExecuted, CanSaveRecipientExecuted);

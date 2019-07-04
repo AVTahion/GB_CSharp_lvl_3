@@ -1,8 +1,10 @@
-﻿namespace MailSender.lib.Data
+﻿using MailSender.lib.Data.BaseEntityes;
+
+namespace MailSender.lib.Data
 {
-    public class Server
+    /// <summary>Почтовый сервер</summary>
+    public class Server : NamedEntity
     {
-        public string Name { get; set; }
         public string Address { get; set; }
         public int Port { get; set; } = 25;
         public bool SSL { get; set; } = true;
