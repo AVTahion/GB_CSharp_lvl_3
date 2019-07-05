@@ -112,7 +112,6 @@
       <DependentUpon>SendEndWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ValidationRules\ReGexValidationRule.cs" />
-    <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="ViewModel\WpfMailSenderVM.cs" />
     <Compile Include="View\RecepientInfoEditor.xaml.cs">

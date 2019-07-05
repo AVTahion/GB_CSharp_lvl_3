@@ -18,6 +18,7 @@ namespace MailSender.ViewModel
         private readonly ISenderDataService _SendersDataService;
         private readonly IServersDataService _ServersDataService;
         private readonly IMailMessagesDataService _MailMessagesDataService;
+        private readonly IMailSenderService _MailSenderService;
 
         private string _Title = "Помошник спамера";
 
@@ -82,13 +83,15 @@ namespace MailSender.ViewModel
             IRecipientsDataService RecipientsDataServise,
             ISenderDataService SendersDataService,
             IServersDataService ServersDataService,
-            IMailMessagesDataService MailMessagesDataService
+            IMailMessagesDataService MailMessagesDataService,
+            IMailSenderService MailSenderService
             )
         {
             _RecipientsDataService = RecipientsDataServise;
             _SendersDataService = SendersDataService;
             _ServersDataService = ServersDataService;
             _MailMessagesDataService = MailMessagesDataService;
+            _MailSenderService = MailSenderService;
             UpdateDataCommand = new RelayCommand(OnUpdateDataCommandExecuted, CanUpdateDataCommandExecuted);
             CreateRecipientCommand = new RelayCommand(OnCreateRecipientExecuted, CanCreateRecipientExecuted);
             SaveRecipientCommand = new RelayCommand<Recipient>(OnSaveRecipientExecuted, CanSaveRecipientExecuted);

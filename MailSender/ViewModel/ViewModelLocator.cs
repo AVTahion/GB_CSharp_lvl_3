@@ -18,6 +18,7 @@ namespace MailSender.ViewModel
             SimpleIoc.Default.Register<ISenderDataService, SendersDataInMemory>();
             SimpleIoc.Default.Register<IServersDataService, ServersDataInMemory>();
             SimpleIoc.Default.Register<IMailMessagesDataService, MailMessagesDataInMemory>();
+            SimpleIoc.Default.Register<IMailSenderService, SmtpMailSenderService>();
 
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<WpfMailSenderVM>();
