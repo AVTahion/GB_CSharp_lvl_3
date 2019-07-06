@@ -67,7 +67,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Services\IDataService.cs" />
-    <Compile Include="Services\IMailMessagesService.cs" />
+    <Compile Include="Services\IMailMessagesDataService.cs" />
     <Compile Include="Services\IMailSenderService.cs" />
     <Compile Include="Services\InMemory\DataInMemory.cs" />
     <Compile Include="Services\InMemory\MailMessagesDataInMemory.cs" />

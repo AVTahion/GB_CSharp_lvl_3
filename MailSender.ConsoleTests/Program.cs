@@ -8,8 +8,11 @@ namespace MailSender.ConsoleTests
 {
     class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
+            ThreadTest.Start();
+
+            Console.ReadLine();
         }
     }
 }
