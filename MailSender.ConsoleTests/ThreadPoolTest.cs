@@ -17,7 +17,7 @@ namespace MailSender.ConsoleTests
             ThreadPool.SetMaxThreads(cpu_count, cpu_count);
             for (int i = 0; i < 50; i++)
             {
-                ThreadPool.QueueUserWorkItem(ThreadPoolMethod, "Bye Bye World!");
+                ThreadPool.QueueUserWorkItem(ThreadPoolMethod);
             }
         }
 
@@ -26,5 +26,12 @@ namespace MailSender.ConsoleTests
             Thread.Sleep(1000);
             Console.WriteLine($"Задание {parameter} в пуле потоков Thread id: {Thread.CurrentThread.ManagedThreadId}");
         }
+
+        private static void ThreadPoolMethod()
+        {
+            Thread.Sleep(1000);
+            Console.WriteLine($"Задание в пуле потоков Thread id: {Thread.CurrentThread.ManagedThreadId}");
+        }
+
     }
 }
