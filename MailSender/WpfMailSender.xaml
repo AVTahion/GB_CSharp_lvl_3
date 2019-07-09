@@ -52,7 +52,7 @@
                     <ToolBarTray Grid.Row="0">
                         <ToolBar>
                             <Label>Сервера</Label>
-                            <ComboBox MinWidth="100" MaxWidth="200" SelectedIndex="0" ItemsSource="{x:Static testData:TestData.Servers}" DisplayMemberPath="Name">
+                            <ComboBox MinWidth="100" MaxWidth="200" SelectedIndex="0" ItemsSource="{Binding _Servers}" DisplayMemberPath="Name">
                             </ComboBox>
                             <Button>
                                 <StackPanel>
@@ -75,7 +75,7 @@
                         </ToolBar>
                         <ToolBar Band="1" BandIndex="0">
                             <Label>Отправители</Label>
-                            <ComboBox MinWidth="100" MaxWidth="200" SelectedIndex="0" ItemsSource="{x:Static testData:TestData.Sender}">
+                            <ComboBox MinWidth="100" MaxWidth="200" SelectedIndex="0" ItemsSource="{Binding Senders}">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate DataType="{x:Type testData:Sender}">
                                         <StackPanel Orientation="Horizontal">
@@ -202,7 +202,7 @@
                                     </StackPanel>
                                 </Button>
                             </UniformGrid>
-                            <ListBox Name="MessageList"  ItemsSource="{x:Static testData:TestData.MailMessages}" DisplayMemberPath="Subject">
+                            <ListBox Name="MessageList"  ItemsSource="{Binding MailMessages}" DisplayMemberPath="Subject">
                             </ListBox>
                         </DockPanel>
                     </GroupBox>

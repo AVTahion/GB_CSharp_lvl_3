@@ -5,6 +5,13 @@ namespace MailSender.lib.Services.InMemory
 {
     public class MailMessagesDataInMemory : DataInMemory<MailMessage>, IMailMessagesDataService
     {
+        public MailMessagesDataInMemory()
+        {
+            for (int i = 1; i < 10; i++)
+            {
+                _Items.Add(new MailMessage { Id = i, Subject = $"Письмо {i}", Body = $"Текст письма {i}" });
+            }
+        }
         public override void Update(MailMessage item)
         {
             if (item is null) throw new ArgumentNullException(nameof(item));

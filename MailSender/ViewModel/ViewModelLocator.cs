@@ -20,11 +20,11 @@ namespace MailSender.ViewModel
             SimpleIoc.Default.Register<IMailMessagesDataService, MailMessagesDataInMemory>();
             SimpleIoc.Default.Register<IMailSenderService, SmtpMailSenderService>();
 
-            SimpleIoc.Default.Register<MainViewModel>();
+            //SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<WpfMailSenderVM>();
         }
 
-        public MainViewModel Main => ServiceLocator.Current.GetInstance<MainViewModel>();
+        //public MainViewModel Main => ServiceLocator.Current.GetInstance<MainViewModel>();
         public WpfMailSenderVM WpfMailSenderViewModel => ServiceLocator.Current.GetInstance<WpfMailSenderVM>();
 
         public static void Cleanup()
