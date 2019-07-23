@@ -11,7 +11,7 @@ namespace MailSender.lib.Services.InMemory
     {
         public SendersDataInMemory()
         {
-            for (int i = 1; i < 10; i++)
+            for (int i = 1; i <= 10; i++)
             {
                 _Items.Add(new Sender { Id = i, Name = $"Отправитель_{i}", Address = $"Sender_{i}@server.com" });
             }

@@ -7,9 +7,9 @@ namespace MailSender.lib.Services.InMemory
     {
         public ServersDataInMemory()
         {
-            for (int i = 1; i < 10; i++)
+            for (int i = 1; i <= 10; i++)
             {
-                _Items.Add(new Server { Id = i,Name = $"Сервер_{1}", Address = $"smtp.Server{i}.com"});
+                _Items.Add(new Server { Id = i,Name = $"Сервер_{i}", Address = $"smtp.Server{i}.com"});
             }
         }
         public override void Update(Server item)

@@ -7,7 +7,7 @@ namespace MailSender.lib.Services.InMemory
     {
         public MailMessagesDataInMemory()
         {
-            for (int i = 1; i < 10; i++)
+            for (int i = 1; i <= 10; i++)
             {
                 _Items.Add(new MailMessage { Id = i, Subject = $"Письмо {i}", Body = $"Текст письма {i}" });
             }

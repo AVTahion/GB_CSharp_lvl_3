@@ -52,7 +52,7 @@
                     <ToolBarTray Grid.Row="0">
                         <ToolBar>
                             <Label>Сервера</Label>
-                            <ComboBox MinWidth="100" MaxWidth="200" SelectedIndex="0" ItemsSource="{Binding _Servers}" DisplayMemberPath="Name">
+                            <ComboBox MinWidth="100" MaxWidth="200" SelectedIndex="0" ItemsSource="{Binding Servers}" DisplayMemberPath="Name">
                             </ComboBox>
                             <Button>
                                 <StackPanel>

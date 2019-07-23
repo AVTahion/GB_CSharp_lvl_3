@@ -19,6 +19,7 @@ namespace MailSender.ViewModel
         private readonly ISenderDataService _SendersDataService;
         private readonly IServersDataService _ServersDataService;
         private readonly IMailMessagesDataService _MailMessagesDataService;
+
         private readonly IMailSenderService _MailSenderService;
 
         private string _Title = "Помошник спамера";
@@ -54,9 +55,9 @@ namespace MailSender.ViewModel
 
         private ObservableCollection<Recipient> _Recipients;
 
-        private ObservableCollection<Server> _Servers { get; } = new ObservableCollection<Server>();
-        private ObservableCollection<Sender> _Senders { get; } = new ObservableCollection<Sender>();
-        private ObservableCollection<MailMessage> _MailMessages { get; } = new ObservableCollection<MailMessage>();
+        public ObservableCollection<Server> Servers { get; } = new ObservableCollection<Server>();
+        public ObservableCollection<Sender> Senders { get; } = new ObservableCollection<Sender>();
+        public ObservableCollection<MailMessage> MailMessages { get; } = new ObservableCollection<MailMessage>();
 
         public ObservableCollection<Recipient> Recipients
         {
@@ -156,18 +157,18 @@ namespace MailSender.ViewModel
         {
             Recipients = new ObservableCollection<Recipient>(_RecipientsDataService.GetAll());
 
-            void UpdateData<T>(IDataService<T> service, ObservableCollection<T> collection) where T : Entity
+            void UpdateData<T>(IDataService<T> Service, ObservableCollection<T> Collection) where T : Entity
             {
-                collection.Clear();
-                foreach (var entity in service.GetAll())
+                Collection.Clear();
+                foreach (var entity in Service.GetAll())
                 {
-                    collection.Add(entity);
+                    Collection.Add(entity);
                 }
             }
 
-            UpdateData(_ServersDataService, _Servers);
-            UpdateData(_SendersDataService, _Senders);
-            UpdateData(_MailMessagesDataService, _MailMessages);
+            UpdateData(_ServersDataService, Servers);
+            UpdateData(_SendersDataService, Senders);
+            UpdateData(_MailMessagesDataService, MailMessages);
         }
     }
 }
