@@ -9,6 +9,7 @@ using System.Collections.ObjectModel;
 using MailSender.lib.Data;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
+using MailSender.lib.Data.BaseEntityes;
 
 namespace MailSender.ViewModel
 {
@@ -18,6 +19,7 @@ namespace MailSender.ViewModel
         private readonly ISenderDataService _SendersDataService;
         private readonly IServersDataService _ServersDataService;
         private readonly IMailMessagesDataService _MailMessagesDataService;
+
         private readonly IMailSenderService _MailSenderService;
 
         private string _Title = "Помошник спамера";
@@ -52,6 +54,10 @@ namespace MailSender.ViewModel
         }
 
         private ObservableCollection<Recipient> _Recipients;
+
+        public ObservableCollection<Server> Servers { get; } = new ObservableCollection<Server>();
+        public ObservableCollection<Sender> Senders { get; } = new ObservableCollection<Sender>();
+        public ObservableCollection<MailMessage> MailMessages { get; } = new ObservableCollection<MailMessage>();
 
         public ObservableCollection<Recipient> Recipients
         {
@@ -150,6 +156,19 @@ namespace MailSender.ViewModel
         public void UpdateData()
         {
             Recipients = new ObservableCollection<Recipient>(_RecipientsDataService.GetAll());
+
+            void UpdateData<T>(IDataService<T> Service, ObservableCollection<T> Collection) where T : Entity
+            {
+                Collection.Clear();
+                foreach (var entity in Service.GetAll())
+                {
+                    Collection.Add(entity);
+                }
+            }
+
+            UpdateData(_ServersDataService, Servers);
+            UpdateData(_SendersDataService, Senders);
+            UpdateData(_MailMessagesDataService, MailMessages);
         }
     }
 }
